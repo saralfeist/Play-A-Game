@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+        #yesButton {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            position: absolute;
+            transition: all 0.3s ease;
+            z-index: 2; /* Ensure the button is on top of the iframe */
+        }
+        #giphy {
+            position: absolute;
+            z-index: 1; /* Place the iframe behind the button */
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+
+<iframe id="giphy" src="https://giphy.com/embed/12U64py2hE1JPq" width="480" height="274" frameBorder="0" allowFullScreen></iframe>
+<button id="yesButton">Yes</button>
+
+<script>
+    const yesButton = document.getElementById('yesButton');
+    const giphy = document.getElementById('giphy');
+
+    // Show the GIF above the button when the page loads
+    giphy.style.display = 'block';
+    giphy.style.top = '30%'; // Adjust the top position
+    giphy.style.left = '50%';
+    giphy.style.transform = 'translate(-50%, -50%)'; // Center the GIF
+
+    yesButton.addEventListener('click', function() {
+        // Move the button to a random position when clicked
+        const x = Math.random() * (window.innerWidth - yesButton.clientWidth);
+        const y = Math.random() * (window.innerHeight - yesButton.clientHeight);
+        
+        yesButton.style.left = `${x}px`;
+        yesButton.style.top = `${y}px`;
+    });
+
+    // Set the button's initial position at the center of the screen
+    yesButton.style.left = '50%';
+    yesButton.style.top = '60%'; // Position the button below the GIF
+    yesButton.style.transform = 'translate(-50%, -50%)';
+</script>
+
+</body>
+</html>
